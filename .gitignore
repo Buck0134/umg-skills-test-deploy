@@ -1,0 +1,21 @@
+# Node modules
+frontend/node_modules/
+
+# Python virtual enviroments
+backend/venv
+
+# React build output
+frontend/build/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# ENV
+backend/.env
