@@ -5,14 +5,31 @@ const Home = () => {
   return (
     <Box sx={{ p: 4 }}>
       <Typography variant="h4" gutterBottom>
-        Capitol Music Group Skills Test
+        Bucky's Capitol Music Group Skills Test
       </Typography>
       <Typography variant="body1" sx={{ mb: 2 }}>
-        I really enjoyed working on this and scaled up a bit so all three parts(Functionalities) are fully implemented. 
-        On this site you can find my answer to all three parts of the UMG Software Engineering skills test.
+        Hi it's <strong>Bucky</strong>! I really enjoyed working on this and scaled up a bit so all three parts(functionalities) are fully implemented. Hope you would enjoy reviewing this as much as I coded it. 
       </Typography>
       <Typography variant="body1" sx={{ mb: 4 }}>
+        On this site you can find my answer to all three parts of the UMG Software Engineering skills test.
         You can also find my implementation notes with code references for each part.
+      </Typography>
+
+      <Typography variant="body2" sx={{ mb: 4 }}>
+        Requirements Recap:
+        <ul>
+          <li><strong>Part 1</strong>: Create a simple React table component that fetches and displays JSON data returned from an API endpoint</li>
+          <li><strong>Part 2</strong>: Implement an API endpoint that accepts and validates user input and stores the validated data in a BigQuery table, focusing on proper validation and error handling</li>
+          <li>
+            <strong>Part 3</strong>: Implement a feature that allows multiple users to save artists of interest to custom lists. Include:
+            <ul>
+              <li>The BigQuery table schema(s) to store list information</li>
+              <li>An API endpoint to fetch data from the above table(s)</li>
+              <li>A React component that displays the fetched data and allows for the deletion or addition of artists</li>
+              <li>An explanation of how these three elements work together and any additional considerations for performance or security</li>
+            </ul>
+          </li>
+        </ul>
       </Typography>
 
       <Box sx={{ display: 'flex', flexDirection: 'row', gap: 3, justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -128,7 +145,7 @@ const Home = () => {
               💻 Source Code on GitHub
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              View the full repository for this project on GitHub, including frontend, backend, and notes.
+              View the full repository for this project on GitHub, including frontend, backend, and notes. You can also clone the repo and run it on your local machine. 
             </Typography>
           </CardContent>
           <CardActions>
