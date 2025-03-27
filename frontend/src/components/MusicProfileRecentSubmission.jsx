@@ -12,7 +12,7 @@ const MusicProfileRecentSubmissions = ({ refreshTrigger }) => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:8000/submit/submissions?limit=10');
+      const res = await axios.get('https://umg-deploy-backend.onrender.com/submit/submissions?limit=10');
       setRows(res.data);
     } catch (err) {
       console.error("Error fetching submissions:", err);

@@ -161,7 +161,7 @@ const ArtistCard = ({ artist, onDelete, list_id, setModalMessage, setModalOpen }
     // Handle deletion of an artist.
     const handleDelete = async () => {
       try {
-        const response = await axios.delete('http://localhost:8000/lists/list/remove-artist', {
+        const response = await axios.delete('https://umg-deploy-backend.onrender.com/lists/list/remove-artist', {
           params: { list_id: list_id, artist_id: artist.artist_id }
         });
         if (response.status === 200) {
@@ -253,7 +253,7 @@ const ListDetailView = ({ list, onBack, lists, onSelectList, user }) => {
   const fetchArtists = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:8000/lists/list/${list.list_id}/artists`);
+      const response = await axios.get(`https://umg-deploy-backend.onrender.com/lists/list/${list.list_id}/artists`);
       setArtists(response.data);
     } catch (error) {
       console.error('Error fetching artists:', error);
@@ -289,7 +289,7 @@ const ListDetailView = ({ list, onBack, lists, onSelectList, user }) => {
       };
 
       console.log("Adding artist with payload:", payload);
-      const response = await axios.post("http://localhost:8000/lists/list/add-artist", payload);
+      const response = await axios.post("https://umg-deploy-backend.onrender.com/lists/list/add-artist", payload);
       // If the backend confirms the addition, update state.
       if (response && response.data) {
         // console.log(response.data)
@@ -431,7 +431,7 @@ const Part3CustomLists = () => {
 
   const fetchLists = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/lists');
+      const response = await axios.get('https://umg-deploy-backend.onrender.com/lists');
       setLists(response.data);
     } catch (error) {
       console.error('Error fetching lists:', error);

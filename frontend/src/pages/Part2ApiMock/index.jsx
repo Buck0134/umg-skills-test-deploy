@@ -55,7 +55,7 @@ const Part2ApiMock = () => {
     e.preventDefault();
     setStatus(null);
     try {
-      const response = await axios.post('http://localhost:8000/submit/', formData);
+      const response = await axios.post('https://umg-deploy-backend.onrender.com/submit/', formData);
       console.log(response)
       setStatus({
         type: 'success',
@@ -268,7 +268,7 @@ const Part2ApiMock = () => {
               fontSize={14}
               sx={{ overflow: 'auto', maxHeight: 300, whiteSpace: 'pre-wrap' }}
             >
-              {generateCurlCommand('http://localhost:8000/submit/', formData)}
+              {generateCurlCommand('https://umg-deploy-backend.onrender.com/submit/', formData)}
             </Box>
           </Box>
         )}

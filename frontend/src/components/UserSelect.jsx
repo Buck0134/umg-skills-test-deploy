@@ -11,7 +11,7 @@ const UserSelect = ({ onUserSelected }) => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/lists/users');
+        const response = await axios.get('https://umg-deploy-backend.onrender.com/lists/users');
         if (Array.isArray(response.data)) {
           setUsers(response.data);
         } else {

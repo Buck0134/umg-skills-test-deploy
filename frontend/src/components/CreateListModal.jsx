@@ -16,7 +16,7 @@ import {
       try {
         const listId = `list-${Date.now()}`; // basic unique ID logic
         console.log(user);
-        await axios.post('http://localhost:8000/lists/list', {
+        await axios.post('https://umg-deploy-backend.onrender.com/lists/list', {
           list_id: listId,
           list_name: listName,
           created_by: user.name,
