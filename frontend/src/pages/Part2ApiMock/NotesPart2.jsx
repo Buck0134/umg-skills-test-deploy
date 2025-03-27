@@ -113,7 +113,7 @@ const Part2Notes = () => {
         </li>
         <li>
           <Link
-            href="https://github.com/Buck0134/umg-skills-test/blob/main/frontend/src/pages/Part2ApiMock/NotesPart2.jsx"
+            href="https://github.com/Buck0134/umg-skills-test/blob/main/frontend/src/pages/Part2ApiMock/index.jsx"
             target="_blank"
             rel="noopener"
           >
