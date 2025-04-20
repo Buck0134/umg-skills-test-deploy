@@ -14,6 +14,7 @@ const AboutBuckySection = () => {
         display: 'flex',
         justifyContent: 'center',
         position: 'relative',
+        overflowX: 'hidden', // ✅ Prevent horizontal scroll
       }}
     >
       {/* Outer wrapper */}
@@ -26,6 +27,7 @@ const AboutBuckySection = () => {
           gap: { xs: 6, md: 10 },
           maxWidth: 1200,
           width: '100%',
+          overflowX: 'hidden', // ✅ Ensure child content doesn't overflow
         }}
       >
         {/* Left: Photo and Quote */}
@@ -96,25 +98,25 @@ const AboutBuckySection = () => {
             gutterBottom
             sx={{ fontWeight: 600, fontSize: { xs: '1.6rem', sm: '1.8rem' } }}
           >
-            Hello, I’m Bucky.
+            Bucky Yu
           </Typography>
 
           {/* Education Section */}
           <Box
             sx={{
-                mt: 3,
-                mb: 3,
-                p: 2,
-                borderLeft: '4px solid #ff9800',
-                pl: 2,
-                bgcolor: '#fdf5e6', // slightly warmer background to match
-                borderRadius: 2,
+              mt: 3,
+              mb: 3,
+              p: 2,
+              borderLeft: '4px solid #ff9800',
+              pl: 2,
+              bgcolor: '#fdf5e6',
+              borderRadius: 2,
             }}
-            >
+          >
             <Typography variant="subtitle1" fontWeight={600} gutterBottom>
               🎓 Education
             </Typography>
-                        <Typography variant="body2" sx={{ mt: 1, lineHeight: 1.7 }}>
+            <Typography variant="body2" sx={{ mt: 1, lineHeight: 1.7 }}>
               <strong>Carnegie Mellon University</strong> (2023–2024)<br />
               M.S. in Software Engineering
             </Typography>
@@ -126,51 +128,50 @@ const AboutBuckySection = () => {
 
           <Typography variant="body1" sx={{ fontSize: '1.05rem', lineHeight: 1.9, color: '#444' }}>
             <strong>I understand user needs</strong>, build scalable systems, design APIs, and enjoy turning complex problems into elegant solutions.
-            </Typography>
+          </Typography>
 
-            <Typography
+          <Typography
             variant="body1"
             sx={{
-                mt: 3,
-                fontSize: '1.05rem',
-                lineHeight: 1.9,
-                color: '#444',
-                px: 2,
-                py: 1,
-                bgcolor: '#f9f9f9',
-                borderLeft: '4px solid #ccc',
-                borderRadius: 2,
+              mt: 3,
+              fontSize: '1.05rem',
+              lineHeight: 1.9,
+              color: '#444',
+              px: 2,
+              py: 1,
+              bgcolor: '#f9f9f9',
+              borderLeft: '4px solid #ccc',
+              borderRadius: 2,
             }}
-            >
+          >
             My work is grounded in <strong>user empathy</strong> and <strong>stakeholder alignment</strong> —
             ensuring that every solution I build is intuitive, purposeful, and driven by real-world use cases.
-            Whether I’m collaborating with product teams or diving into user research,
-            I aim to design software that feels seamless and human.
-            </Typography>
+            Whether I’m collaborating with product teams or diving into user research, I aim to design software that feels seamless and human.
+          </Typography>
 
-            <Typography variant="body1" sx={{ mt: 3, fontSize: '1.05rem', lineHeight: 1.9, color: '#444', mb: 1 }}>
+          <Typography variant="body1" sx={{ mt: 3, fontSize: '1.05rem', lineHeight: 1.9, color: '#444', mb: 1 }}>
             I’ve delivered production-ready solutions using:
-            </Typography>
+          </Typography>
 
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 2 }}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 2 }}>
             {['React', 'JavaScript', 'Go', 'Python', 'MySQL', 'GraphQL'].map((tech) => (
-                <Box
+              <Box
                 key={tech}
                 component="span"
                 sx={{
-                    px: 2,
-                    py: 0.5,
-                    bgcolor: '#e0e0e0',
-                    color: '#333',
-                    fontSize: '0.85rem',
-                    borderRadius: '16px',
-                    fontWeight: 500,
+                  px: 2,
+                  py: 0.5,
+                  bgcolor: '#e0e0e0',
+                  color: '#333',
+                  fontSize: '0.85rem',
+                  borderRadius: '16px',
+                  fontWeight: 500,
                 }}
-                >
+              >
                 {tech}
-                </Box>
+              </Box>
             ))}
-            </Box>
+          </Box>
         </Box>
       </Box>
 

@@ -109,57 +109,102 @@
 
 // export default NavBar;
 
-
 import { useState } from 'react';
 import {
   AppBar,
   Toolbar,
   Typography,
   Button,
-  Box
+  Box,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
 } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 
-const NavBar = () => {
-  return (
-    <AppBar position="static" sx={{ backgroundColor: '#000' }}>
-      <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1, color: '#fff' }}>
-          Bucky Yu's Portfolio
-        </Typography>
+const navItems = [
+  { label: 'Home', path: '/' },
+  { label: 'Work', path: '/work' },
+  { label: 'Projects', path: '/projects' },
+  { label: 'Skill Showcase', path: '/skill-show-case' },
+];
 
-        <Box sx={{ display: 'flex', gap: 2 }}>
-          <Button
-            component={Link}
-            to="/"
-            sx={{ color: '#fff', '&:hover': { backgroundColor: '#333' } }}
+const NavBar = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen((prev) => !prev);
+  };
+
+  const drawer = (
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+      <Typography variant="h6" sx={{ my: 2 }}>
+        Bucky Yu
+      </Typography>
+      <List>
+        {navItems.map((item) => (
+          <ListItem key={item.label} disablePadding>
+            <ListItemButton component={Link} to={item.path}>
+              <ListItemText primary={item.label} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+
+  return (
+    <>
+      <AppBar position="static" sx={{ backgroundColor: '#000' }}>
+        <Toolbar>
+          <Typography variant="h6" sx={{ flexGrow: 1, color: '#fff' }}>
+            Bucky Yu's Portfolio
+          </Typography>
+
+          {/* Desktop */}
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
+            {navItems.map((item) => (
+              <Button
+                key={item.label}
+                component={Link}
+                to={item.path}
+                sx={{ color: '#fff', '&:hover': { backgroundColor: '#333' } }}
+              >
+                {item.label}
+              </Button>
+            ))}
+          </Box>
+
+          {/* Mobile */}
+          <IconButton
+            color="inherit"
+            edge="end"
+            onClick={handleDrawerToggle}
+            sx={{ display: { md: 'none' } }}
           >
-            Home
-          </Button>
-          <Button
-            component={Link}
-            to="/work"
-            sx={{ color: '#fff', '&:hover': { backgroundColor: '#333' } }}
-          >
-            Work
-          </Button>
-          <Button
-            component={Link}
-            to="/projects"
-            sx={{ color: '#fff', '&:hover': { backgroundColor: '#333' } }}
-          >
-            Projects
-          </Button>
-          <Button
-            component={Link}
-            to="/skill-show-case"
-            sx={{ color: '#fff', '&:hover': { backgroundColor: '#333' } }}
-          >
-            Skill Showcase
-          </Button>
-        </Box>
-      </Toolbar>
-    </AppBar>
+            <MenuIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+
+      {/* Mobile Drawer */}
+      <Drawer
+        anchor="right"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{ keepMounted: true }}
+        sx={{
+          display: { xs: 'block', md: 'none' },
+          '& .MuiDrawer-paper': { width: 240 },
+        }}
+      >
+        {drawer}
+      </Drawer>
+    </>
   );
 };
 

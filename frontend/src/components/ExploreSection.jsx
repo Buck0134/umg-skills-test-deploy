@@ -45,18 +45,21 @@ const ExploreSection = () => {
       id="explore-section"
       sx={{
         width: '100%',
+        maxWidth: '100vw',
         minHeight: 'calc(100vh - 64px)',
         bgcolor: '#f9f9f9',
+        // border: '2px dashed red', 
         px: 2,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
+        overflowX: 'hidden',
         py: 8,
       }}
     >
-      <Box sx={{ width: '100%', maxWidth: 1080 }}>
+      <Box sx={{ width: '100%', maxWidth: '100%', }}>
         <Typography
           variant="h4"
           sx={{ fontWeight: 600, mb: 6, color: '#222' }}
