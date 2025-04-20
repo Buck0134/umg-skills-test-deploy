@@ -13,7 +13,7 @@ const AboutBuckySection = () => {
         py: { xs: 4, md: 6 },
         display: 'flex',
         justifyContent: 'center',
-        position: 'relative', // enable absolute scroll cue
+        position: 'relative',
       }}
     >
       {/* Outer wrapper */}
@@ -99,22 +99,78 @@ const AboutBuckySection = () => {
             Hello, I’m Bucky.
           </Typography>
 
+          {/* Education Section */}
+          <Box
+            sx={{
+                mt: 3,
+                mb: 3,
+                p: 2,
+                borderLeft: '4px solid #ff9800',
+                pl: 2,
+                bgcolor: '#fdf5e6', // slightly warmer background to match
+                borderRadius: 2,
+            }}
+            >
+            <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+              🎓 Education
+            </Typography>
+                        <Typography variant="body2" sx={{ mt: 1, lineHeight: 1.7 }}>
+              <strong>Carnegie Mellon University</strong> (2023–2024)<br />
+              M.S. in Software Engineering
+            </Typography>
+            <Typography variant="body2" sx={{ lineHeight: 1.7 }}>
+              <strong>Lehigh University</strong> (2019–2023)<br />
+              B.S. in Computer Science & Economics
+            </Typography>
+          </Box>
+
           <Typography variant="body1" sx={{ fontSize: '1.05rem', lineHeight: 1.9, color: '#444' }}>
-            I’m a full-stack engineer with a background in <strong>Computer Science</strong> and Economics,
-            currently finishing up my study at <strong>Carnegie Mellon University</strong> as a Master Student in Software Engineering.
-            I understand user needs, build scalable systems, design APIs, and enjoy turning complex problems into elegant solutions.
-          </Typography>
+            <strong>I understand user needs</strong>, build scalable systems, design APIs, and enjoy turning complex problems into elegant solutions.
+            </Typography>
 
-          <Typography variant="body1" sx={{ mt: 3, fontSize: '1.05rem', lineHeight: 1.9, color: '#444' }}>
-            My work is grounded in understanding the needs of both end users and stakeholders —
+            <Typography
+            variant="body1"
+            sx={{
+                mt: 3,
+                fontSize: '1.05rem',
+                lineHeight: 1.9,
+                color: '#444',
+                px: 2,
+                py: 1,
+                bgcolor: '#f9f9f9',
+                borderLeft: '4px solid #ccc',
+                borderRadius: 2,
+            }}
+            >
+            My work is grounded in <strong>user empathy</strong> and <strong>stakeholder alignment</strong> —
             ensuring that every solution I build is intuitive, purposeful, and driven by real-world use cases.
-            Whether I’m collaborating with product teams or diving into user research, I aim to design software that feels seamless and human.
-          </Typography>
+            Whether I’m collaborating with product teams or diving into user research,
+            I aim to design software that feels seamless and human.
+            </Typography>
 
-          <Typography variant="body1" sx={{ mt: 3, fontSize: '1.05rem', lineHeight: 1.9, color: '#444' }}>
-            I’ve worked with startups and research teams to deliver production-ready solutions using technologies like <strong>React</strong>, <strong>Go</strong>, <strong>Python</strong>, and <strong>GraphQL</strong>.
-            Outside of work, I enjoy capturing life on film. You can check out my photography account <a href="https://your-link.com" target="_blank" rel="noopener noreferrer">here</a>.
-          </Typography>
+            <Typography variant="body1" sx={{ mt: 3, fontSize: '1.05rem', lineHeight: 1.9, color: '#444', mb: 1 }}>
+            I’ve delivered production-ready solutions using:
+            </Typography>
+
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 2 }}>
+            {['React', 'JavaScript', 'Go', 'Python', 'MySQL', 'GraphQL'].map((tech) => (
+                <Box
+                key={tech}
+                component="span"
+                sx={{
+                    px: 2,
+                    py: 0.5,
+                    bgcolor: '#e0e0e0',
+                    color: '#333',
+                    fontSize: '0.85rem',
+                    borderRadius: '16px',
+                    fontWeight: 500,
+                }}
+                >
+                {tech}
+                </Box>
+            ))}
+            </Box>
         </Box>
       </Box>
 
