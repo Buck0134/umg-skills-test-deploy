@@ -8,6 +8,7 @@ const experiences = [
     date: 'June 2024 – August 2024',
     stack: 'Go, React, JavaScript, MySQL, GraphQL',
     bullets: [
+      'Built efficient and scalable backend services and intuitive frontend systems in a high-impact internship at a sports-tech startup.',
       'Developed a key Enterprise System module that reduced external API calls by 90%, boosting operational efficiency.',
       'Engineered backend services using Go with REST APIs and web socket synchronization secured via OAuth 2.0 and JWT.',
       'Optimized Shopify GraphQL queries to reduce payload and bandwidth while improving retrieval speed.',
@@ -23,6 +24,7 @@ const experiences = [
     date: 'January 2024 – Present',
     stack: 'JavaScript, React, MongoDB, PostgreSQL, HTML, Web Socket',
     bullets: [
+      'Supported students in building real-time, full-stack web applications through technical mentorship and architecture guidance.', 
       'Mentored students building a real-time emergency response app using React, WebSocket, JWT, and more.',
       'Led Agile standups and applied Scrum in weekly progress cycles.',
       'Guided system architecture, design patterns, and RESTful API development.',
@@ -37,6 +39,7 @@ const experiences = [
     date: 'August 2024 – Present',
     stack: 'Python, Statistical Analysis, React, Data Privacy, Machine Learning',
     bullets: [
+      'Led full-stack development of a secure research platform to analyze student collaboration and software engineering education outcomes.',
       'Analyzed 10+ years of team formation data in software engineering education.',
       'Built a full-stack data analysis platform (React + Python backend) for real-time integration and visualization.',
       'Created data pipelines for anonymization, normalization, and structured storage.',
@@ -123,7 +126,7 @@ const WorkLandingPage = () => {
       {/* Full Scrollable Page Content */}
       <Box sx={{ flex: 1, px: { xs: 4, md: 10 }, py: 8, width: '100%' }}>
         <Box sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', py: 6 }}>
-          <Box>
+          <Box sx={{ mb: 5 }}>
             <Typography variant="h4" fontWeight={600} gutterBottom>
               Experience
             </Typography>
@@ -131,9 +134,8 @@ const WorkLandingPage = () => {
               As a <strong>new grad software engineer</strong>, I bring hands-on industry experience in <strong>full-stack development</strong> and <strong>data analytics</strong>, with a strong foundation in building secure, scalable systems and collaborating with cross-functional teams in both academic and startup settings.
             </Typography>
           </Box>
+          {/* <TimelineShowcase/> */}
         </Box>
-
-        <TimelineShowcase/>
 
         {experiences.map((exp) => (
           <Box key={exp.id} id={exp.id} sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', py: 6 }}>

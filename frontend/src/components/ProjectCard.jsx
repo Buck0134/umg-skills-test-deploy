@@ -3,6 +3,8 @@ import { GitHub } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
 const ProjectCard = ({ title, subtitle, tech, bullets, github, tags = [] }) => {
+  const techArray = tech.split(',').map((item) => item.trim());
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -29,9 +31,11 @@ const ProjectCard = ({ title, subtitle, tech, bullets, github, tags = [] }) => {
             <Typography variant="subtitle1" color="text.secondary">
               {subtitle}
             </Typography>
-            <Typography variant="body2" sx={{ mt: 0.5, fontStyle: 'italic', color: '#666' }}>
-              {tech}
-            </Typography>
+            <Stack direction="row" spacing={1} sx={{ mt: 1, flexWrap: 'wrap' }}>
+              {techArray.map((techItem, idx) => (
+                <Chip key={idx} label={techItem} size="small" variant="outlined" />
+              ))}
+            </Stack>
           </Box>
 
           {github && (

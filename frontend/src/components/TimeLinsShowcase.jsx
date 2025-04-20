@@ -5,40 +5,54 @@ import { useNavigate } from 'react-router-dom';
 const CustomTimeline = () => {
   const navigate = useNavigate();
 
-  const timelineSpan = 72;  // 2019 to end of 2024, in months
+  // Compressed early years (2019–2022) with weighted span logic
+  const monthsPerYear = [
+    6,  // 2019 (Aug–Dec)
+    6,  // 2020 (compressed)
+    6,  // 2021 (compressed)
+    6,  // 2022 (compressed)
+    12, // 2023
+    12, // 2024
+  ];
+  const monthOffsets = monthsPerYear.reduce((acc, months, idx) => {
+    acc.push((acc[idx - 1] || 0) + months);
+    return acc;
+  }, []);
+
+  const timelineSpan = monthOffsets[monthOffsets.length - 1];
 
   const events = [
     {
       label: 'Lehigh University',
       type: 'education',
-      from: 0, // Aug 2019 (start)
-      to: 45, // May 2023 (end)
+      from: 0,
+      to: 21,
       description: 'B.S. in Computer Science & Economics',
     },
     {
       label: 'Carnegie Mellon University',
       type: 'education',
-      from: 48, // Aug 2023
-      to: 63, // Dec 2024
+      from: 24,
+      to: 35,
       description: 'M.S. in Software Engineering',
     },
     {
       label: 'Influxer Internship',
       type: 'work',
-      from: 56, // May 2024
-      to: 59, // August 2024
+      from: 32,
+      to: 35,
       onClick: () => navigate('/work#influxer'),
     },
   ];
 
   return (
     <Box sx={{ overflowX: 'auto', px: 4, py: 6 }}>
-      <Box sx={{ minWidth: 1200, position: 'relative', height: 100 }}>
+      <Box sx={{ minWidth: 1200, position: 'relative', height: 140 }}>
         {/* Timeline Line */}
         <Box
           sx={{
             position: 'absolute',
-            top: 48,
+            top: 65,
             left: 0,
             right: 0,
             height: 4,
@@ -52,8 +66,8 @@ const CustomTimeline = () => {
             key={year}
             sx={{
               position: 'absolute',
-              left: `${(index * 12 / timelineSpan) * 100}%`,
-              top: 60,
+              left: `${(monthOffsets[index - 1] || 0) / timelineSpan * 100}%`,
+              top: 80,
               transform: 'translateX(-50%)',
               fontSize: '0.8rem',
               color: '#666',
@@ -67,6 +81,7 @@ const CustomTimeline = () => {
         {events.map((event, index) => {
           const left = (event.from / timelineSpan) * 100;
           const width = ((event.to - event.from) / timelineSpan) * 100;
+          const isEducation = event.type === 'education';
 
           return (
             <motion.div
@@ -77,25 +92,23 @@ const CustomTimeline = () => {
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
               <Tooltip
-                title={
-                  event.type === 'education' ? (
-                    <>
-                      <Typography fontWeight={600}>{event.label}</Typography>
-                      <Typography variant="body2">{event.description}</Typography>
-                    </>
-                  ) : null
-                }
+                title={isEducation ? (
+                  <>
+                    <Typography fontWeight={600}>{event.label}</Typography>
+                    <Typography variant="body2">{event.description}</Typography>
+                  </>
+                ) : event.label}
                 arrow
               >
                 <Box
                   onClick={event.onClick}
                   sx={{
                     position: 'absolute',
-                    top: 34,
+                    top: isEducation ? 75 : 15,
                     left: `${left}%`,
                     width: `${width}%`,
                     height: 32,
-                    bgcolor: event.type === 'education' ? '#2196f3' : '#43a047',
+                    bgcolor: isEducation ? '#2196f3' : '#43a047',
                     borderRadius: 1,
                     cursor: event.onClick ? 'pointer' : 'default',
                     '&:hover': {

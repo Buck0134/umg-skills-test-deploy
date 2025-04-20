@@ -1,5 +1,8 @@
-import { Box, Typography, Grid } from '@mui/material';
+import { Box, Typography, Grid, IconButton, Tooltip, Snackbar } from '@mui/material';
 import { motion } from 'framer-motion';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import EmailIcon from '@mui/icons-material/Email';
+import { useState } from 'react';
 
 const actions = [
   { label: 'Work Experience', href: '/work', color: '#1976d2' },
@@ -24,12 +27,19 @@ const actions = [
   },
   {
     label: 'Email Me',
-    href: 'mailto:buckyy@cmu.edu',
     color: '#d32f2f',
+    isEmail: true,
   },
 ];
 
 const ExploreSection = () => {
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('buckyy@cmu.edu');
+    setSnackbarOpen(true);
+  };
+
   return (
     <Box
       id="explore-section"
@@ -49,11 +59,7 @@ const ExploreSection = () => {
       <Box sx={{ width: '100%', maxWidth: 1080 }}>
         <Typography
           variant="h4"
-          sx={{
-            fontWeight: 600,
-            mb: 6,
-            color: '#222',
-          }}
+          sx={{ fontWeight: 600, mb: 6, color: '#222' }}
         >
           Learn more about me
         </Typography>
@@ -81,11 +87,7 @@ const ExploreSection = () => {
                 }}
               >
                 <Box
-                  component="a"
-                  href={action.href}
-                  target={action.external ? '_blank' : undefined}
-                  rel={action.external ? 'noopener noreferrer' : undefined}
-                  download={action.download}
+                  component="div"
                   sx={{
                     width: 280,
                     height: 180,
@@ -102,31 +104,79 @@ const ExploreSection = () => {
                     textAlign: 'center',
                     cursor: 'pointer',
                     border: `2px solid transparent`,
+                    position: 'relative',
                     '&:hover': {
-                      bgcolor: `${action.color}22`, // ~13% opacity tint
+                      bgcolor: `${action.color}22`,
                       color: '#fff',
                       boxShadow: '0 14px 32px rgba(0,0,0,0.12)',
                       borderColor: action.color,
                     },
                   }}
                 >
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      fontWeight: 600,
-                      color: '#333',
-                      transition: 'color 0.3s',
-                      '&:hover': { color: '#fff' },
-                    }}
-                  >
-                    {action.label}
-                  </Typography>
+                  {!action.isEmail ? (
+                    <a
+                      href={action.href}
+                      target={action.external ? '_blank' : undefined}
+                      rel={action.external ? 'noopener noreferrer' : undefined}
+                      download={action.download}
+                      style={{
+                        textDecoration: 'none',
+                        color: 'inherit',
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Typography
+                        variant="h6"
+                        sx={{ fontWeight: 600, color: '#333', '&:hover': { color: '#fff' } }}
+                      >
+                        {action.label}
+                      </Typography>
+                    </a>
+                  ) : (
+                    <Box>
+                      <Typography
+                        variant="h6"
+                        sx={{ fontWeight: 600, color: '#333', mb: 2 }}
+                      >
+                        Email Me
+                      </Typography>
+                      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
+                        <Tooltip title="Send email">
+                          <IconButton
+                            href="mailto:buckyy@cmu.edu"
+                            sx={{ bgcolor: '#f0f0f0', '&:hover': { bgcolor: '#ccc' } }}
+                          >
+                            <EmailIcon />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Copy email to clipboard">
+                          <IconButton
+                            onClick={handleCopyEmail}
+                            sx={{ bgcolor: '#f0f0f0', '&:hover': { bgcolor: '#ccc' } }}
+                          >
+                            <ContentCopyIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </Box>
+                    </Box>
+                  )}
                 </Box>
               </motion.div>
             </Grid>
           ))}
         </Grid>
       </Box>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={() => setSnackbarOpen(false)}
+        message="Email copied to clipboard!"
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      />
     </Box>
   );
 };
