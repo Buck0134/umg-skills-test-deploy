@@ -49,7 +49,6 @@ const ExploreSection = () => {
         maxWidth: '100vw',
         minHeight: 'calc(100vh - 64px)',
         bgcolor: '#f9f9f9',
-        // border: '2px dashed red', 
         px: 2,
         display: 'flex',
         flexDirection: 'column',
@@ -60,11 +59,8 @@ const ExploreSection = () => {
         py: 8,
       }}
     >
-      <Box sx={{ width: '100%', maxWidth: '100%', }}>
-        <Typography
-          variant="h4"
-          sx={{ fontWeight: 600, mb: 6, color: '#222' }}
-        >
+      <Box sx={{ width: '100%' }}>
+        <Typography variant="h4" sx={{ fontWeight: 600, mb: 6, color: '#222' }}>
           Learn more about me
         </Typography>
 
@@ -91,7 +87,6 @@ const ExploreSection = () => {
                 }}
               >
                 <Box
-                  component="div"
                   sx={{
                     width: 280,
                     height: 180,
@@ -99,8 +94,6 @@ const ExploreSection = () => {
                     borderRadius: 4,
                     bgcolor: '#fff',
                     boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
-                    transition:
-                      'all 0.3s ease, background-color 0.3s ease, color 0.3s ease',
                     p: 4,
                     display: 'flex',
                     alignItems: 'center',
@@ -118,34 +111,64 @@ const ExploreSection = () => {
                   }}
                 >
                   {!action.isEmail ? (
-                    <a
-                    component={action.external ? 'a' : RouterLink}
-                    to={!action.external && !action.isEmail ? action.href : undefined}
-                    href={action.external || action.download ? action.href : undefined}
-                      download={action.download}
-                      style={{
-                        textDecoration: 'none',
-                        color: 'inherit',
-                        width: '100%',
-                        height: '100%',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <Typography
-                        variant="h6"
-                        sx={{ fontWeight: 600, color: '#333', '&:hover': { color: '#fff' } }}
+                    action.external ? (
+                      <a
+                        href={action.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          textDecoration: 'none',
+                          color: 'inherit',
+                          width: '100%',
+                          height: '100%',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
                       >
-                        {action.label}
-                      </Typography>
-                    </a>
+                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#333', '&:hover': { color: '#fff' } }}>
+                          {action.label}
+                        </Typography>
+                      </a>
+                    ) : action.download ? (
+                      <a
+                        href={action.href}
+                        download={action.download}
+                        style={{
+                          textDecoration: 'none',
+                          color: 'inherit',
+                          width: '100%',
+                          height: '100%',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#333', '&:hover': { color: '#fff' } }}>
+                          {action.label}
+                        </Typography>
+                      </a>
+                    ) : (
+                      <RouterLink
+                        to={action.href}
+                        style={{
+                          textDecoration: 'none',
+                          color: 'inherit',
+                          width: '100%',
+                          height: '100%',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <Typography variant="h6" sx={{ fontWeight: 600, color: '#333', '&:hover': { color: '#fff' } }}>
+                          {action.label}
+                        </Typography>
+                      </RouterLink>
+                    )
                   ) : (
                     <Box>
-                      <Typography
-                        variant="h6"
-                        sx={{ fontWeight: 600, color: '#333', mb: 2 }}
-                      >
+                      <Typography variant="h6" sx={{ fontWeight: 600, color: '#333', mb: 2 }}>
                         Email Me
                       </Typography>
                       <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
@@ -174,6 +197,7 @@ const ExploreSection = () => {
           ))}
         </Grid>
       </Box>
+
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}
