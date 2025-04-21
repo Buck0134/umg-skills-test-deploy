@@ -2,7 +2,16 @@ import { Box, Typography, Stack, Chip, Divider, Button } from '@mui/material';
 import { GitHub } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
-const ProjectCard = ({ title, subtitle, tech, bullets, github, tags = [] }) => {
+const categoryColorMap = {
+  'Full Stack': 'success',
+  'Machine Learning': 'info',
+  'Frontend': 'secondary',
+  'Network Security': 'warning',
+  'CMU': 'default',
+  'Team Project': 'primary',
+};
+
+const ProjectCard = ({ title, subtitle, tech, bullets, github, categories = [], timePeriod }) => {
   const techArray = tech.split(',').map((item) => item.trim());
 
   return (
@@ -21,8 +30,34 @@ const ProjectCard = ({ title, subtitle, tech, bullets, github, tags = [] }) => {
           borderRadius: 4,
           bgcolor: '#fff',
           boxShadow: '0 6px 24px rgba(0,0,0,0.05)',
+          position: 'relative',
         }}
       >
+        {/* Category Chips (top-right) */}
+        {categories.length > 0 && (
+          <Stack
+            direction="row"
+            spacing={1}
+            sx={{
+              position: 'absolute',
+              top: 20,
+              right: 20,
+              flexWrap: 'wrap',
+              justifyContent: 'flex-end',
+            }}
+          >
+            {categories.map((cat, i) => (
+              <Chip
+                key={i}
+                label={cat}
+                size="small"
+                color={categoryColorMap[cat] || 'default'}
+                sx={{ fontWeight: 500 }}
+              />
+            ))}
+          </Stack>
+        )}
+
         <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
           <Box>
             <Typography variant="h5" fontWeight={600} gutterBottom>
@@ -31,6 +66,13 @@ const ProjectCard = ({ title, subtitle, tech, bullets, github, tags = [] }) => {
             <Typography variant="subtitle1" color="text.secondary">
               {subtitle}
             </Typography>
+
+            {timePeriod && (
+              <Typography variant="body2" sx={{ color: '#777', mt: 0.5 }}>
+                {timePeriod}
+              </Typography>
+            )}
+
             <Stack direction="row" spacing={1} sx={{ mt: 1, flexWrap: 'wrap' }}>
               {techArray.map((techItem, idx) => (
                 <Chip key={idx} label={techItem} size="small" variant="outlined" />
@@ -50,14 +92,6 @@ const ProjectCard = ({ title, subtitle, tech, bullets, github, tags = [] }) => {
             </Button>
           )}
         </Stack>
-
-        {tags.length > 0 && (
-          <Stack direction="row" spacing={1} sx={{ mt: 2, flexWrap: 'wrap' }}>
-            {tags.map((tag, idx) => (
-              <Chip key={idx} label={tag} color="primary" size="small" variant="outlined" />
-            ))}
-          </Stack>
-        )}
 
         <Divider sx={{ my: 3 }} />
 

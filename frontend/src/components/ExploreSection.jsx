@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EmailIcon from '@mui/icons-material/Email';
 import { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 const actions = [
   { label: 'Work Experience', href: '/work', color: '#1976d2' },
@@ -118,9 +119,9 @@ const ExploreSection = () => {
                 >
                   {!action.isEmail ? (
                     <a
-                      href={action.href}
-                      target={action.external ? '_blank' : undefined}
-                      rel={action.external ? 'noopener noreferrer' : undefined}
+                    component={action.external ? 'a' : RouterLink}
+                    to={!action.external && !action.isEmail ? action.href : undefined}
+                    href={action.external || action.download ? action.href : undefined}
                       download={action.download}
                       style={{
                         textDecoration: 'none',
