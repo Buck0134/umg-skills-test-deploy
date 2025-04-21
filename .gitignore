@@ -19,3 +19,5 @@ Thumbs.db
 
 # ENV
 backend/.env
+
+creds-umg-bq-key.json
